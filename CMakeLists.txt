@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.28.0)
 project(
-    "CMakeTutorialApp"
-    VERSION 0.0.3
+    "Name-of-your-project"
+    VERSION 0.0.0
     LANGUAGES CXX
-    DESCRIPTION "A test project to learn cmake")
+    DESCRIPTION "Add your project description here")
 
 # Global Settings
 set(BUILD_FOLDER_PATH ${CMAKE_CURRENT_BINARY_DIR})
