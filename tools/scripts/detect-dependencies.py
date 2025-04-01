@@ -54,15 +54,18 @@ def detect_cycles(graph):
 def analyze_dependencies(files):
     graph, reverse_graph = build_dependency_graph(files)
     
-    print("=== Dependency Analysis:")
+    print("\n=== Dependency Analysis:")
     for file, dependencies in graph.items():
-        print(f"{file} depends on {dependencies}")
+        print(f"{file:<20} depends on {dependencies}")
     
     print("\n=== Dependency Counts:")
+    # Print the table header
+    print(f"{'Filename':<12} | {'Incoming':^12} | {'Outgoing':^12}")
+    print("-" * 40)
     for file in files:
         incoming = len(reverse_graph[file])
         outgoing = len(graph[file])
-        print(f"{file}: Incoming={incoming}, Outgoing={outgoing}")
+        print(f"{file:<12} | (->) {incoming:^7} | (<-) {outgoing:^7}")
     
     has_cycle, cycle_path = detect_cycles(graph)
     if has_cycle:
