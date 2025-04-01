@@ -97,24 +97,28 @@ cd reports/coverage
 ls *.html
 ```
 
-### Build and Run Clang-Tidy
-```sh
-cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_CLANG_TIDY=ON ..
-cmake --build . --target clang-tidy
-```
-
-### Build and Run... Whatever
-Take a look in `CMakeLists.txt`.
-If you want to enable the option "ENABLE_PYTHON_SCRIPT," just configure it with:
+### Build and Run custom Python Scripts
 ```sh
 cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_PYTHON_SCRIPT=ON ..
 ```
-This enables the build target "python-script," which can be executed by:
+This creates build-targets for python-scripts which are listed in tools/cmake/build-targets/python-script.cmake .
+Modify this file if you want to add your own scripts.
+All scripts get the path to /src as argument passed.
+
 ```sh
-cmake --build . --target python-script
+cmake --build . --target script-detect-dependencies
 ```
 
----
+### Build and Run... Whatever
+Take a look in `CMakeLists.txt` to see the available options.
+If you want to enable e.g. the option "ENABLE_CLANG_TIDY," just configure it with:
+```sh
+cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_CLANG_TIDY=ON ..
+```
+This enables the build target "clang-tidy," which can be executed by:
+```sh
+cmake --build . --target clang-tidy
+```
 
 Happy coding! 🚀
 
