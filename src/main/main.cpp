@@ -1,6 +1,6 @@
 #include <iostream>
 #include "build-info.h"
-#include "pprint.h"
+#include "fizzbuzz.h"
 
 /**
  * @file main.cpp
@@ -10,4 +10,5 @@ int main() {
     namespace info = build::info;
     std::cout << "Start " << info::projectname << " v" << info::version
               << " from #" << info::hash << "\n";
+    print_fizz_buzz();
 }

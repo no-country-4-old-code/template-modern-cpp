@@ -1,6 +1,5 @@
-set(LIBRARY_NAME PrettyPrintLib)
-
-set(SOURCES pprint.cpp)
+set(LIBRARY_NAME ExampleLib)
+set(SOURCES fizzbuzz.cpp)
 
 # Add sources to lib
 add_library(${LIBRARY_NAME} STATIC ${SOURCES})
