@@ -86,6 +86,7 @@ cd src/main
 ### Build and Run Google Tests
 ```sh
 cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTS=ON ..
+cmake --build .
 ctest
 ```
 
@@ -106,8 +107,8 @@ Modify that file if you want to add your own scripts.
 All scripts get the path to /src as argument passed.
 
 ```sh
-cmake --build . --target script-detect-dependencies 
-cmake --build . --target script-find-todos
+cmake --build . --target script-detect-dependencies.py
+cmake --build . --target script-find-todos.py
 ```
 
 ### Build and Run... Whatever
