@@ -1,3 +1,3 @@
 #pragma once
 
-void print_fizz_buzz();
+const char* map_to_fizz_buzz(unsigned int i);
