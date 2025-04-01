@@ -1,17 +1,7 @@
-import os
 import re
-import sys
+import utils.utils as utils
 from collections import defaultdict
 
-def find_source_files(directory):
-    """Find all C/C++ source and header files in the given directory."""
-    extensions = {'.h', '.hpp', '.c', '.cpp', '.cc'}
-    files = {}
-    for root, _, filenames in os.walk(directory):
-        for filename in filenames:
-            if any(filename.endswith(ext) for ext in extensions):
-                files[filename] = os.path.join(root, filename)
-    return files
 
 def parse_includes(file_path):
     """Extract included files from a source file."""
@@ -61,8 +51,7 @@ def detect_cycles(graph):
             return True, cycle_path
     return False, []
 
-def analyze_dependencies(directory):
-    files = find_source_files(directory)
+def analyze_dependencies(files):
     graph, reverse_graph = build_dependency_graph(files)
     
     print("=== Dependency Analysis:")
@@ -83,7 +72,7 @@ def analyze_dependencies(directory):
         print("\n=== No cyclic dependencies detected.")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python dependency_analyzer.py <directory>")
-        sys.exit(1)
-    analyze_dependencies(sys.argv[1])
+    directory = utils.get_input_arguments()
+    files = utils.find_source_files(directory)
+
+    analyze_dependencies(files)
