@@ -5,7 +5,7 @@ def get_input_arguments():
     number_of_arguments = len(sys.argv) - 1;
 
     if number_of_arguments != 1:
-        print("ERROR: Wrong number of arguments ! (Expected 1 ; Got {number_of_arguments})")
+        print(f"ERROR: Wrong number of arguments ! (Expected 1 ; Got {number_of_arguments})")
         print("Usage: python <script-name.py> <directory>")
         sys.exit(1)
     

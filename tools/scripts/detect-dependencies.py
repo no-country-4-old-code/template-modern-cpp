@@ -23,7 +23,8 @@ def build_dependency_graph(files):
     for filename, path in files.items():
         includes = parse_includes(path)
         for include in includes:
-            if include in files:  # Only consider local files
+            # only consider local files
+            if include in files:  
                 graph[filename].add(include)
                 reverse_graph[include].add(filename)
     return graph, reverse_graph
@@ -37,7 +38,6 @@ def analyze_dependencies(files):
         print(f"{file:<20} depends on {dependencies}")
     
     print("\n=== Dependency Counts:")
-    # Print the table header
     print(f"{'Filename':<12} | {'Incoming':^12} | {'Outgoing':^12}")
     print("-" * 40)
     for file in files:
