@@ -28,4 +28,3 @@ function(create_target_python_script _SCRIPT_PATH)
             COMMENT "Runs python script: ${_SCRIPT_NAME}")
     endif()
 endfunction()
-
