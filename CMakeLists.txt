@@ -8,6 +8,7 @@ project(
 # Global Settings
 set(BUILD_FOLDER_PATH ${CMAKE_CURRENT_BINARY_DIR})
 set(TOOLS_FOLDER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/tools)
+set(SCRIPT_FOLDER_PATH ${TOOLS_FOLDER_PATH}/scripts)
 set(SRC_FOLDER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(TEST_FOLDER_PATH ${CMAKE_CURRENT_SOURCE_DIR}/test)
 set(PROJECT_REPORT_PATH ${BUILD_FOLDER_PATH}/reports)
@@ -30,7 +31,7 @@ option(ENABLE_CPP_CHECK           "Adds build-target 'cppcheck' to run static co
 option(ENABLE_SANITIZERS          "Builds application with 'sanitizers for run runtime-analysis"            ON)
 option(ENABLE_UNITTEST_COVERAGE   "Adds build-target 'unittest-coverage' to create test coverage reports"   ON)
 option(ENABLE_CMAKE_FORMAT        "Adds build-target 'cmake-format' to format CMake files"                  ON)
-option(ENABLE_PYTHON_SCRIPT       "Adds build-target 'python-script' to run custom python script"           ON)
+option(ENABLE_PYTHON_SCRIPT       "Adds build-targets 'script-<name-of-script>' to run python scripts"      ON)
 option(ENABLE_CMAKE_LINT          "Adds build-target 'cmake-lint' to lint CMake files"                      ON)
 option(ENABLE_DOXYGEN             "Adds build-target 'code-doc' to create documentation via doxygen"        ON)
 # cmake-format: on
