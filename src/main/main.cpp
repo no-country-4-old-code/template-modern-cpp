@@ -3,7 +3,11 @@
 
 /**
  * @file main.cpp
- * @brief Provides stuff for my great program.
+ * @brief Main entry point for the program, prints the project information.
+ *
+ * This function outputs the project name, version, and commit hash to the
+ * console. It serves as the starting point for executing the program.
+ *
  */
 int main() {
     namespace info = build::info;
