@@ -30,7 +30,7 @@ option(ENABLE_CPP_CHECK           "Adds build-target 'cppcheck' to run static co
 option(ENABLE_SANITIZERS          "Builds application with 'sanitizers for run runtime-analysis"            ON)
 option(ENABLE_UNITTEST_COVERAGE   "Adds build-target 'unittest-coverage' to create test coverage reports"   ON)
 option(ENABLE_CMAKE_FORMAT        "Adds build-target 'cmake-format' to format CMake files"                  ON)
-option(ENABLE_PYTHON_SCRIPT       "Adds build-targets 'script-<name-of-script>' to run python scripts"      ON)
+option(ENABLE_PYTHON_SCRIPTS      "Adds build-targets 'script-<name-of-script>' to run python scripts"      ON)
 option(ENABLE_CMAKE_LINT          "Adds build-target 'cmake-lint' to lint CMake files"                      ON)
 option(ENABLE_DOXYGEN             "Adds build-target 'code-doc' to create documentation via doxygen"        ON)
 # cmake-format: on
@@ -65,8 +65,8 @@ if(ENABLE_CMAKE_FORMAT)
     include(cmake-format)
 endif()
 
-if(ENABLE_PYTHON_SCRIPT)
-    include(python-script)
+if(ENABLE_PYTHON_SCRIPTS)
+    include(python-scripts)
 endif()
 
 if(ENABLE_CMAKE_LINT)

@@ -99,14 +99,15 @@ ls *.html
 
 ### Build and Run custom Python Scripts
 ```sh
-cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_PYTHON_SCRIPT=ON ..
+cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_PYTHON_SCRIPTS=ON ..
 ```
-This creates build-targets for python-scripts which are listed in tools/cmake/build-targets/python-script.cmake .
-Modify this file if you want to add your own scripts.
+This creates build-targets for python-scripts which are listed in "tools/cmake/build-targets/python-script.cmake".
+Modify that file if you want to add your own scripts.
 All scripts get the path to /src as argument passed.
 
 ```sh
-cmake --build . --target script-detect-dependencies
+cmake --build . --target script-detect-dependencies 
+cmake --build . --target script-find-todos
 ```
 
 ### Build and Run... Whatever
