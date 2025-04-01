@@ -1,6 +1,7 @@
 import re
 import utils.utils as utils
 
+__number_of_open_todos = 0
 
 def _truncate_line(line, max_length):
     output = line.strip()    
@@ -16,6 +17,7 @@ def _find_comments_with_tags_in_file(path):
     with open(path, 'r', encoding='utf-8') as file:
         for line_num, line in enumerate(file, start=1):
             if pattern.search(line):
+                __number_of_open_todos += 1
                 truncated_line = _truncate_line(line, max_comment_length)
                 print(f"{truncated_line:<25} @ line {line_num:>3} in {path}")
 
@@ -33,6 +35,7 @@ def find_comments_with_tags(files):
 
         except Exception as e:
             print(f"Error reading {path}: {e}")
+    print(f"> Found {__number_of_open_todos} comments with TODO, FIXME or WTF")
 
 
 if __name__ == "__main__":
