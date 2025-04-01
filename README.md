@@ -1,118 +1,120 @@
-# My Template For C++ Projects
+# Template for C++ Projects
 
-This is my template for modern C++ projects.
-It is based on CMake to work with different compilers (gcc, clang, MSCV) and build systems (make, ninja, etc).
+This is my template for C++ projects. It is based on CMake to work with different compilers (GCC, Clang, MSVC) and build systems (Make, Ninja, etc.).
 
-- Verify your code with [Google tests](https://github.com/google/googletest)
-- Create a test Coverage Reports via [gcovr](https://gcovr.com/en/stable/)
-- Run a static code analysis thanks to [clang-tidy]() and [cppcheck]()
-- Use the full bandwidth of compiler-flags to ensure quality during compile time
-- Find memory-leaks & race conditions faster with [sanitizers]()
-- Format your code using [clang-format]()
-- Add your python-scripts to run custom code analysis [python]()
-- Lint and format your CMake-files using [cmake-lint]() and [cmake-format]() 
-- Documente your code with [Doxygen](https://doxygen.nl/)
-- ...
+## Features
+- Verify your code with [Google Test](https://github.com/google/googletest).
+- Create test coverage reports via [gcovr](https://gcovr.com/en/stable/).
+- Perform static code analysis using [Clang-Tidy](https://clang.llvm.org/extra/clang-tidy/) and [Cppcheck](http://cppcheck.net/).
+- Utilize compiler flags to ensure quality during compile time.
+- Detect memory leaks & race conditions with [sanitizers](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html).
+- Format your code using [Clang-Format](https://clang.llvm.org/docs/ClangFormat.html).
+- Integrate Python scripts for custom code analysis [Python](https://www.python.org/).
+- Lint and format CMake files using [cmake-lint](https://cmake-format.readthedocs.io/en/latest/cmake-lint.html) and [cmake-format](https://cmake-format.readthedocs.io/en/latest/cmake-format.html).
+- Document your code with [Doxygen](https://www.doxygen.nl/).
 
-All these features are optional - modify the root CMakeLists.txt or configure cmake with e.g -DTESTS=ON to enable certain features.
-Most of these features are seperate build-targets which can run independt from the main application.
+By default all of these features are disabled to shrink the requirements for building the application to a compiler and a build system.
+You can easily enable these features by modifying `CMakeLists.txt` or run CMake with -D* option.
+See **Building the project** for further instructions.
 
-Have fun,
-nc4oc
+Have fun !
 
-(No-Country-4-Old-Code)
+**nc4oc** 
+No-Country-4-Old-Code
+
+---
 
 ## Software Requirements
 
-#Option 1:
-The docker way.
-All you need is the installed docker engine to build/run docker-containers.
+### Option 1: The Docker Way
+You only need Docker installed to build and run the containerized environment.
 
-#Option 2:
-You are not a friend of docker ?
-Then welcome to the manual installation process.
-To build the main application you need:
-- CMake 3.28+
-- A compiler (gcc, clang, msvc) and a build system (make, ninja). I would recommend gcc and make, because "code coverage" is currently only working with gcc && gcovr.
+### Option 2: Manual Installation
+If you prefer a manual setup, install the following dependencies:
+- **CMake 3.28+**
+- **A compiler** (GCC, Clang, MSVC) and a **build system** (Make, Ninja). GCC and Make are recommended because "code coverage" currently works only with GCC & gcovr.
 
-To use the optional features like google-test etc. you need to install serveral other tools.
-Please take a look at the Dockerfile under tools/Dockerfile to see the install process. 
+To use optional features like Google Test, you need to install several other tools. Check the `Dockerfile` under `tools/Dockerfile` for the installation process.
+
+---
 
 ## Working with the Docker Container
 
-# Running the Docker Container
-Use either the precompiled docker-image 
-```shell
+### Running the Docker Container
+Use either the precompiled Docker image:
+```sh
 docker run -di --mount type=bind,src=.,dst=/workspace nc4oc/toolchain-cpp:latest
 ```
-or (if you somehow do not trust a random image build by a stranger with funny name) build your own using the Dockerfile under tools/Dockerfile 
-
-```shell
-docker build -t /tools/Dockerfile  some-image-name
+or build your own image if you prefer:
+```sh
+docker build -t some-image-name -f tools/Dockerfile .
 docker run -di --mount type=bind,src=.,dst=/workspace some-image-name
 ```
+Run the command from the project's root directory. The container will mount this folder (`src=.`).
 
-In both cases execute the command from the root of the project.
-You now have a running docker-container which mounts this folder (src=.)
-
-# Attaching to the Docker Container
- Most IDEs offer the possibility to attach to a running docker-container-process (E.g. Visual Studio Code with the "Dev Containers" plugin)
-
- If you want to do it via console figure out the ID of your container using
-
-```shell
+### Attaching to the Docker Container
+Most IDEs allow attaching to a running Docker container (e.g., Visual Studio Code with the "Dev Containers" plugin). 
+To do it via the console, first find the container ID:
+```sh
 docker ps
 ```
-and then attach to it using
-
-```shell
+Then attach to it:
+```sh
 docker attach <ID-of-your-container>
 ```
 
-## Building
-! In the following steps I assume that you are in a linux bash.
-If you are using windows / mac you have to use the pendant commands.
+---
 
-CMake is executed from within /build.
-If /build does not exist, create it first.
+## Building the Project
 
-```shell
+> **Note:** The following steps assume you are using a Linux shell. If you are on Windows/macOS, use equivalent commands.
+
+CMake is executed from within the `/build` directory. If `/build` does not exist, create it first:
+```sh
 mkdir -p build
 cd build
 ```
 
-# Build and run the application
-
-```shell
+### Build and Run the Application
+```sh
 cmake -DCMAKE_BUILD_TYPE=Release ..
 cmake --build . --target application
 cd src/main
 ./application
 ```
 
-
-# Build and run google tests
-```shell
+### Build and Run Google Tests
+```sh
 cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTS=ON ..
 ctest
 ```
 
-# Build and generate coverage report
-```shell
+### Build and Generate Coverage Report
+```sh
 cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTS=ON -DENABLE_UNITTEST_COVERAGE=ON ..
 cmake --build . --target unittest-coverage
 cd reports/coverage
 ls *.html
 ```
 
-# Build and run clang-tidy
-
-```shell
+### Build and Run Clang-Tidy
+```sh
 cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_CLANG_TIDY=ON ..
 cmake --build . --target clang-tidy
 ```
 
-# Other..
-Please take a look at CMakeLists.txt to see all possible configure options and related build-targets.
+### Build and Run.. Whatever
+Take a look in `CMakeLists.txt` .
+If you want to enable option "ENABLE_PYTHON_SCRIPT" just configure it with:
+```sh
+cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_PYTHON_SCRIPT=ON ..
+```
+This enables the build-target "python-script" which can be executed by
+```sh
+cmake --build . --target - python-script
+```
 
+---
+
+Happy coding! 🚀
 
