@@ -13,13 +13,13 @@ This is my template for C++ projects. It is based on CMake to work with differen
 - Lint and format CMake files using [cmake-lint](https://cmake-format.readthedocs.io/en/latest/cmake-lint.html) and [cmake-format](https://cmake-format.readthedocs.io/en/latest/cmake-format.html).
 - Document your code with [Doxygen](https://www.doxygen.nl/).
 
-By default all of these features are disabled to shrink the requirements for building the application to a compiler and a build system.
-You can easily enable these features by modifying `CMakeLists.txt` or run CMake with -D* option.
+By default, all of these features are disabled to shrink the requirements for building the application to a compiler and a build system.
+You can easily enable these features by modifying `CMakeLists.txt` or running CMake with the -D* option.
 See **Building the project** for further instructions.
 
-Have fun !
+Have fun!
 
-**nc4oc** 
+**nc4oc**  
 No-Country-4-Old-Code
 
 ---
@@ -53,7 +53,7 @@ docker run -di --mount type=bind,src=.,dst=/workspace some-image-name
 Run the command from the project's root directory. The container will mount this folder (`src=.`).
 
 ### Attaching to the Docker Container
-Most IDEs allow attaching to a running Docker container (e.g., Visual Studio Code with the "Dev Containers" plugin). 
+Most IDEs allow attaching to a running Docker container (e.g., Visual Studio Code with the "Dev Containers" plugin).  
 To do it via the console, first find the container ID:
 ```sh
 docker ps
@@ -103,15 +103,15 @@ cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_CLANG_TIDY=ON ..
 cmake --build . --target clang-tidy
 ```
 
-### Build and Run.. Whatever
-Take a look in `CMakeLists.txt` .
-If you want to enable option "ENABLE_PYTHON_SCRIPT" just configure it with:
+### Build and Run... Whatever
+Take a look in `CMakeLists.txt`.
+If you want to enable the option "ENABLE_PYTHON_SCRIPT," just configure it with:
 ```sh
 cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_PYTHON_SCRIPT=ON ..
 ```
-This enables the build-target "python-script" which can be executed by
+This enables the build target "python-script," which can be executed by:
 ```sh
-cmake --build . --target - python-script
+cmake --build . --target python-script
 ```
 
 ---
