@@ -11,6 +11,7 @@ Checks: >
   portability-*,
   readability-*,
   -misc-no-recursion
+  -modernize-use-trailing-return-type
 
 HeaderFilterRegex: '\(src\)\/*.\(h|hpp\)'
 CheckOptions:
