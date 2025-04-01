@@ -122,5 +122,17 @@ This enables the build target "clang-tidy," which can be executed by:
 cmake --build . --target clang-tidy
 ```
 
+---
+## Tips for using this Template
+All files under **/src** and **/test** are just examples.
+Feel free to substitue / delete them as you go.
+
+The files under **/tools** are configurations/ scripts for the CMake-targets.
+Modify and extend them as it fits your needs.
+
+---
+
+
+
 Happy coding! 🚀
 
